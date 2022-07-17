@@ -3,10 +3,9 @@ version: '3.7'
 services:
 
   flask:
-    build: ./flask
+    build: 
+      context: flask
     restart: always
-    environment:
-      - APP_NAME=MyFlaskApp
     ports:
       - "8080"
 
