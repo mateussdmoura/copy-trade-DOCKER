@@ -5,8 +5,8 @@ services:
   flask:
     build: 
       context: flask
-    ports:
-      - "8080"
+    expose:
+      - 8080
 
   nginx:
     build: 
