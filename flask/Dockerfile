@@ -6,4 +6,4 @@ ADD . .
 
 RUN pip install -r requirements.txt
 
-CMD gunicorn --bind 0.0.0.0:8080 "flask.wsgi:app"
+CMD gunicorn -b 0.0.0.0:8080 wsgi:app
