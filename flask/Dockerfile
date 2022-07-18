@@ -6,4 +6,4 @@ ADD . .
 
 RUN pip install -r requirements.txt
 
-CMD ["gunicorn","-w", "5", "-b", "0.0.0.0:8080", "flask.app:app"]
+CMD ["gunicorn","-w", "5", "-b", "0.0.0.0:8080", "app:app"]
