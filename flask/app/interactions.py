@@ -1,7 +1,8 @@
 from .connect import w3
 from . import CHAIN_ID
+from load_vars import PRIVATE_KEY
 import json
-from time import sleep
+
 
 def exec_copy_trade(token_address, gas=1000000):
     address_checked = w3.isAddress(token_address)
@@ -46,7 +47,6 @@ def exec_copy_trade(token_address, gas=1000000):
 
         # Wallet to buy the tokens
         account = '0x5b9d44F1660826e9F0DC7dD6c5Fc44DEDBa79873'
-        private_key = 'bb7fa0ce99ba256d30cb38e63b3afa541d5ef89f4a62f3883c88c737ea3a39a6'
 
         ###############
 
@@ -65,7 +65,7 @@ def exec_copy_trade(token_address, gas=1000000):
             'nonce': nonce
         })
 
-        signed_swap_txn = w3.eth.account.sign_transaction(swap_txn, private_key=private_key)
+        signed_swap_txn = w3.eth.account.sign_transaction(swap_txn, private_key=PRIVATE_KEY)
 
         signed_swap_txn_hash = signed_swap_txn.hash
 
