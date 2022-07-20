@@ -1,6 +1,6 @@
 from .connect import w3
 from . import CHAIN_ID
-from load_vars import PRIVATE_KEY
+from .load_vars import PRIVATE_KEY
 import json
 
 

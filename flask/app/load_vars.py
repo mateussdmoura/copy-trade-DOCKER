@@ -1,4 +1,3 @@
-from yaml import load
 from dotenv import load_dotenv
 from os import getenv
 
