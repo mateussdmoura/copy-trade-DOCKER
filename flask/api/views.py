@@ -5,7 +5,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-    return '<p>V1 copy trade bot by mourinha</p>'
+    return '<h2>V1 copy trade bot by mourinha</h2>'
 
 @views.route('/swap/<tokenAddress>')
 def swap_token(tokenAddress):
