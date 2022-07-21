@@ -5,7 +5,7 @@ services:
     build: 
       context: flask
     ports:
-      - "8080:8080"
+      - "8080"
     environment:
       - FLASK_APP=app.py
       - FLASK_ENV=production
