@@ -19,8 +19,7 @@ def home():
 
 @views.route('/swap/<tokenAddress>')
 def swap_token(tokenAddress):
-    logger1.info("Starting Swap")
-    logger1.info("Token Address:", str(tokenAddress))
+    logger1.info("Starting Swap!", "\nToken Address:", str(tokenAddress))
     swapped, receipt = exec_copy_trade(str(tokenAddress))
 
     if swapped:
@@ -32,8 +31,7 @@ def swap_token(tokenAddress):
         
 @views.route('/swap/<tokenAddress>/<gas>')
 def swap_token_with_same_gas(tokenAddress, gas):
-    logger1.info("Starting Swap")
-    logger1.info("Token Address:", str(tokenAddress))
+    logger1.info("Starting Swap!", "\nToken Address:", str(tokenAddress))
     swapped, receipt = exec_copy_trade(str(tokenAddress, gas=gas))
     print()
 
