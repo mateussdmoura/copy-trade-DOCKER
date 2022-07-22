@@ -9,9 +9,9 @@ views = Blueprint('views', __name__)
 logger1 = logging
 logger2 = logging
 
-logger1.basicConfig(filename='./logs/swaps.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
+logger1.basicConfig(filename='./swaps.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
-logger2.basicConfig(filename='./logs/swaps.log', level=logging.WARNING, format='%(asctime)s:%(levelname)s:%(message)s')
+logger2.basicConfig(filename='./swaps.log', level=logging.WARNING, format='%(asctime)s:%(levelname)s:%(message)s')
 
 @views.route('/')
 def home():
