@@ -1,7 +1,17 @@
+from cgitb import handler
 from flask import Blueprint, Response
 from .interactions import exec_copy_trade
+import logging
+from datetime import datetime
 
 views = Blueprint('views', __name__)
+
+logger1 = logging
+logger2 = logging
+
+logger1.basicConfig(filename='./logs/swaps.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
+
+logger2.basicConfig(filename='./logs/swaps.log', level=logging.WARNING, format='%(asctime)s:%(levelname)s:%(message)s')
 
 @views.route('/')
 def home():
@@ -9,35 +19,28 @@ def home():
 
 @views.route('/swap/<tokenAddress>')
 def swap_token(tokenAddress):
-    print()
-    print("Starting Swap")
-    print("Token Address:", str(tokenAddress))
+    logger1.info("Starting Swap")
+    logger1.info("Token Address:", str(tokenAddress))
     swapped, receipt = exec_copy_trade(str(tokenAddress))
-    print()
 
     if swapped:
-        print("Success Swap using wallet", receipt["from"])
-        print()
+        logger1.info("Success Swap using wallet", receipt["from"])
         return Response(status=200)
     else:
-        print("Fail Swap")
-        print()
+        logger2.warning("Fail Swap")
         return Response(status=404)
         
 @views.route('/swap/<tokenAddress>/<gas>')
 def swap_token_with_same_gas(tokenAddress, gas):
-    print()
-    print("Starting Swap")
-    print("Token Address:", str(tokenAddress))
+    logger1.info("Starting Swap")
+    logger1.info("Token Address:", str(tokenAddress))
     swapped, receipt = exec_copy_trade(str(tokenAddress, gas=gas))
     print()
 
     if swapped:
-        print("Success Swap using wallet", receipt["from"])
-        print()
+        logger1.info("Success Swap using wallet", receipt["from"])
         return Response(status=200)
     else:
-        print("Fail Swap")
-        print()
+        logger2.warning("Fail Swap")
         return Response(status=404)
     
