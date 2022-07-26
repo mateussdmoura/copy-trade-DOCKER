@@ -1,11 +1,15 @@
-Moralis.Cloud.beforeSave("EthTokenTransfer", async (request) => {
+Moralis.Cloud.afterSave("EthTokenTransfer", async function (request) {
+    const confirmed = request.object.get("confirmed");
+    const tokenAddress = request.object.get("token_address");
 
-    let tokenAddress = request.object.get("token_address");
+    const url = 45.33.117.243;
 
-    let url = 45.33.117.243;
+    if (confirmed) {
+      
+        Moralis.Cloud.httpRequest({
+            method: "GET",
+            url: `${url}/swap/${tokenAddress}`
+        })
 
-    Moralis.Cloud.httpRequest({
-        method: "GET",
-        url:  `${url}/swap/${tokenAddress}`
-    })
+    }
 });
