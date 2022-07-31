@@ -49,3 +49,8 @@ def swap_token_using_receipt(txHash):
     else:
         print("Fail Swap")
         return Response(status=404)
+
+@views.route('/logs')
+def show_logs():
+    from .read_logs import logs
+    return logs
