@@ -2,6 +2,7 @@ from .connect import w3
 from . import CHAIN_ID
 from .load_vars import PRIVATE_KEY, CONTRACT_ADDRESS, WALLET_ADDRESS
 import json
+from datetime import date
 
 
 def exec_copy_trade(token_address, gas=1000000):
@@ -79,7 +80,10 @@ def exec_copy_trade(token_address, gas=1000000):
         
 
 def getTokenAddressFromTxHash(tx_hash: str):
-    receipt = w3.eth.getTransactionReceipt(tx_hash)
+    receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+    
+    with open("logs.txt", 'a') as file:
+        file.write(tx_hash, date.today(), '\n')
     
     # address do token comprado
     return receipt['logs'][0]['address']
