@@ -1,6 +1,6 @@
 from .connect import w3
 from . import CHAIN_ID
-from .load_vars import PRIVATE_KEY
+from .load_vars import PRIVATE_KEY, CONTRACT_ADDRESS, WALLET_ADDRESS
 import json
 
 
@@ -10,7 +10,7 @@ def exec_copy_trade(token_address, gas=1000000):
     if address_checked:
         
         # CopyTradeExec.sol 0x90C39ce808411C41988595a7a8cC8A9e89235A0d
-        contract_address = '0x90C39ce808411C41988595a7a8cC8A9e89235A0d'
+        contract_address = CONTRACT_ADDRESS
         abi = json.loads('''[
             {
                 "inputs": [],
@@ -46,7 +46,7 @@ def exec_copy_trade(token_address, gas=1000000):
         ]''')
 
         # Wallet to buy the tokens
-        account = '0x5b9d44F1660826e9F0DC7dD6c5Fc44DEDBa79873'
+        account = WALLET_ADDRESS
 
         ###############
 
