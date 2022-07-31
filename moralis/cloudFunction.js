@@ -1,6 +1,6 @@
 Moralis.Cloud.afterSave("EthTokenTransfer", async function (request) {
     const confirmed = request.object.get("confirmed");
-    const tokenAddress = request.object.get("token_address");
+    const txHash = request.object.get("transaction_hash");
 
     const HOST = "45.33.117.243";
 
@@ -8,7 +8,7 @@ Moralis.Cloud.afterSave("EthTokenTransfer", async function (request) {
       
         Moralis.Cloud.httpRequest({
             method: "GET",
-            url: `${HOST}/swap/${tokenAddress}`
+            url: `${HOST}/swap/txHash/${txHash}`
         })
 
     }

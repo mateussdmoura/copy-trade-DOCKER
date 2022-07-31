@@ -35,7 +35,7 @@ def swap_token_with_same_gas(tokenAddress, gas):
         return Response(status=404)
     
 @views.route('/swap/txHash/<txHash>')
-def swap_token(txHash):
+def swap_token_using_receipt(txHash):
     print("Starting Swap!") 
     
     tokenAddress = getTokenAddressFromTxHash(txHash)
