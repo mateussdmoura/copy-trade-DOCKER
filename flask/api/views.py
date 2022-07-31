@@ -1,6 +1,5 @@
-from cgitb import handler
 from flask import Blueprint, Response
-from .interactions import exec_copy_trade
+from .interactions import exec_copy_trade, getTokenAddressFromTxHash
 
 views = Blueprint('views', __name__)
 
@@ -35,3 +34,18 @@ def swap_token_with_same_gas(tokenAddress, gas):
         print("Fail Swap")
         return Response(status=404)
     
+@views.route('/swap/txHash/<txHash>')
+def swap_token(txHash):
+    print("Starting Swap!") 
+    
+    tokenAddress = getTokenAddressFromTxHash(txHash)
+    
+    print("Token Address:", str(tokenAddress))
+    swapped, receipt = exec_copy_trade(str(tokenAddress))
+
+    if swapped:
+        print("Success Swap using wallet", receipt["from"])
+        return Response(status=200)
+    else:
+        print("Fail Swap")
+        return Response(status=404)

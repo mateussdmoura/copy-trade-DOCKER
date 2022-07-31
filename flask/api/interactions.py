@@ -78,4 +78,11 @@ def exec_copy_trade(token_address, gas=1000000):
         return False
         
 
+def getTokenAddressFromTxHash(tx_hash: str):
+    receipt = w3.eth.getTransactionReceipt(tx_hash)
+    
+    # address do token comprado
+    return receipt['logs'][0]['address']
+    
+    
 
